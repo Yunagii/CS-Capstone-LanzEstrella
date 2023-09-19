@@ -1,33 +1,65 @@
+using System;
+using System.Dynamic;
+using System.Runtime.CompilerServices;
 using Godot;
+
 
 public partial class player_character : CharacterBody2D
 {
-    // Create Public Variable for Character Movement Speed
     [Export]
     public int Speed {get; set;} = 400;
-
-    // Create Public Variable for Character Starting Direction
-    [Export]
-    public Vector2 startingDirection = new Vector2 (0,-1);
+    // Create Public Variable for Character Movement Speed
     
-    // Function to set Starting Direction of Player Character
+    [Export]
+    public Vector2 startingDirection = new Vector2 (0,1);
+    // Create Public Variable for Character Starting Direction
+
     public override void _Ready()
     {
-        var AnimationTree = GetNode<AnimationTree>("AnimationTree");
-        AnimationTree.Set("parameters/Idle/blend_position", startingDirection);
+        // Set Idle Animation as Starting position
+        UpdateAnimationPerameters(startingDirection);
     }
 
-    // Function to Get Keyboard Inputs
-    public void GetInput()
-    {
-        Vector2 InputDirection = Input.GetVector("left", "right", "up", "down");
-        Velocity = InputDirection * Speed;
-    }
-
-    // Function to Move Player Character
     public override void _PhysicsProcess(double detla)
     {
-        GetInput();
+        // Retrieve Input Values
+        Vector2 InputDirection = Input.GetVector("left", "right", "up", "down");
+        
+        // Move player character based on input values
+        Velocity = InputDirection * Speed;
+        UpdateAnimationPerameters(InputDirection);
         MoveAndSlide();
+        PickNewState();
+    }
+
+     void UpdateAnimationPerameters (Vector2 moveInput)
+     {
+        // Set position values
+
+        var AnimationTree = GetNode<AnimationTree>("AnimationTree");
+
+        if(moveInput != Vector2.Zero)
+        {
+            AnimationTree.Set("parameters/Idle/blend_position", moveInput);
+            AnimationTree.Set("parameters/Walk/blend_position", moveInput);
+        }
+     }
+
+    void PickNewState()
+    {
+        // If player is moving, change animation state to walk cycle
+
+        var AnimationTree = GetNode<AnimationTree>("AnimationTree");
+        var stateMachine = GetNode<AnimationTree>("AnimationTree").Get("parameters/playback").As<AnimationNodeStateMachinePlayback>();
+
+        if(Velocity != Vector2.Zero)
+        {
+            stateMachine.Travel("Walk");
+        }
+
+        else
+        {
+            stateMachine.Travel("Idle");
+        }
     }
 }
