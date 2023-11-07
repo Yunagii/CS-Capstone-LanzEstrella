@@ -1,10 +1,10 @@
 ========== Timeline ==========
 ---------- 9 November 2023 ----------
 Have basic test envoironment set up:
-  - 8D character movement
+  X 8D character movement 
   - Collision
-  - Tile map
-  - v1 sprites and aniations
+  X Tile map 
+  o v1 sprites and aniations
 
 ---------- 19 November 2023 ---------
 Additional movements and basic attacks
