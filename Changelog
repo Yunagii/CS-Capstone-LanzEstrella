@@ -3,3 +3,6 @@
 - Walking sprites created (up, down, left right)
 - Walking script created
 - Basic tile map created
+
+- Incomplete tasks
+  - Animation transition between idle and walk
