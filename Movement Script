@@ -5,18 +5,27 @@ using UnityEngine.InputSystem;
 
 public class PlayerScript : MonoBehaviour
 {
-    public float speed;
-    private Rigidbody2D rb;
-    private Vector2 moveInput;
+    public float moveSpeed = 5.0f;
+    public Vector2 moveInput;
+    public Rigidbody2D rb;
+    public Animator animator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+    }
+
+    private void update()
+    {
+        animator.SetFloat("Horizontal", moveInput.x);
+        animator.SetFloat("Vertical", moveInput.y);
+        animator.SetFloat("Speed", moveInput.sqrMagnitude);             // Doesn't work????
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = moveInput * speed;
+        rb.velocity = moveInput * moveSpeed;
     }
 
     private void OnMove(InputValue inputValue)
