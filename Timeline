@@ -1,13 +1,29 @@
 ========== Timeline ==========
----------- 9 November 2023 ----------
+---------- 13 November 2023 ----------
 Have basic test envoironment set up:
   X 8D character movement 
-  - Collision
   X Tile map 
-  o v1 sprites and aniations
+  - v1 sprites and aniations
 
----------- 19 November 2023 ---------
-Additional movements and basic attacks
+---------- 27 November 2023 ---------
+Additional movements and combat animations
+  - Collision
   - Dash
-  - Basic attack funcitonality
+  - Attack animations
 
+---------- 11 December 2023 ----------
+Baisc Combat and Enemy movement
+- Basic attack funcitonality
+- Enemy spawn and AI
+- Enemy Sprites 
+  - Idle 
+  - Walk
+  - Attack
+
+---------- 1 January 2024 ----------
+UI, Skill Tree and Abilities
+- Player UI
+- Menu
+  - Skill Tree
+  - Inventory
+- 1 Fire ability
