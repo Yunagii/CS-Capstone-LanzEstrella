@@ -16,13 +16,6 @@ public class PlayerScript : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void update()
-    {
-        animator.SetFloat("Horizontal", moveInput.x);
-        animator.SetFloat("Vertical", moveInput.y);
-        animator.SetFloat("Speed", moveInput.sqrMagnitude);             // Doesn't work????
-    }
-
     private void FixedUpdate()
     {
         rb.velocity = moveInput * moveSpeed;
@@ -31,5 +24,8 @@ public class PlayerScript : MonoBehaviour
     private void OnMove(InputValue inputValue)
     {
         moveInput = inputValue.Get<Vector2>();
+        animator.SetFloat("Horizontal", moveInput.x);
+        animator.SetFloat("Vertical", moveInput.y);
+        animator.SetFloat("PlayerSpeed", moveInput.sqrMagnitude); 
     }
 }
