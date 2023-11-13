@@ -4,5 +4,8 @@
 - Walking script created
 - Basic tile map created
 
+---------- 13 November 2023 ----------
+- Adjusted code : animation states work
+
 - Incomplete tasks
   - Animation transition between idle and walk
