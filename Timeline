@@ -5,13 +5,13 @@ Have basic test envoironment set up:
   X Tile map 
   X v1 sprites and aniations
 
----------- 27 November 2023 ---------
+----------  ---------
 Additional movements and combat animations
   - Collision
   - Dash
   - Attack animations
 
----------- 11 December 2023 ----------
+----------  ----------
 Baisc Combat and Enemy movement
 - Basic attack funcitonality
 - Enemy spawn and AI
@@ -20,7 +20,7 @@ Baisc Combat and Enemy movement
   - Walk
   - Attack
 
----------- 1 January 2024 ----------
+----------  ----------
 UI, Skill Tree and Abilities
 - Player UI
 - Menu
