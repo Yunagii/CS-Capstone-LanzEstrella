@@ -8,25 +8,26 @@ using UnityEngine.UI;
 
 public class playerContorllerScript : MonoBehaviour
 {
-    //Unity Components
+    [Header("Unity Componenets")]
     private PlayerInputActions playerControl;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
     [SerializeField] private TrailRenderer tr;
 
-    // Input Actions
+    [Header("Input Actions")]
     private InputAction move;
     private InputAction dash;
 
-    // General Variables
+    [Header("Movement Variables")]
     private Vector2 moveInput = Vector2.zero;
     [SerializeField] private float moveSpeed = 5.0f;
 
-    // Dash Variables
+    [Header("Dash Variables")]
     private bool canDash = true;
     private bool isDashing = false;
+    private Vector2 dashDirection = Vector2.zero;
     [SerializeField] private float dashSpeed = 25.0f;
-    [SerializeField] private float dashDuration = 0.5f;
+    [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 1f;
 
 
@@ -59,6 +60,9 @@ public class playerContorllerScript : MonoBehaviour
         animator.SetFloat("Horizontal", moveInput.x);
         animator.SetFloat("Vertical", moveInput.y);
         animator.SetFloat("PlayerSpeed", moveInput.sqrMagnitude);
+        
+        
+        
 
         if (isDashing)
         {
@@ -72,6 +76,7 @@ public class playerContorllerScript : MonoBehaviour
         {
             return;
         }
+        
 
         rb.velocity = moveInput * moveSpeed;
     }
@@ -96,14 +101,18 @@ public class playerContorllerScript : MonoBehaviour
 
     private IEnumerator DashCoroutine()
     {
+        Physics2D.IgnoreLayerCollision(7, 8, true);
         canDash = false;
         isDashing = true;
+
+        dashDirection = moveInput.normalized;
         
-        rb.velocity = moveInput * dashSpeed;
+        rb.velocity = dashDirection * dashSpeed;
         tr.emitting = true;
         yield return new WaitForSeconds(dashDuration);
 
-        rb.velocity = moveInput * moveSpeed;
+        Physics2D.IgnoreLayerCollision(7,8,false);
+        rb.velocity = dashDirection * moveSpeed;
         tr.emitting = false;
         isDashing = false;
         
