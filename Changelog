@@ -7,3 +7,7 @@
 ---------- 13 November 2023 ----------
 - Adjusted code : animation states work
 - Collision added
+
+---------- 3 January 2023 ----------
+- Dash function created
+- Basic dash animations
