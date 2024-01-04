@@ -1,19 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-    public float moveSpeed = 5.0f;
-    public Vector2 moveInput;
-    public Rigidbody2D rb;
-    public Animator animator;
+    //Unity Components
+    private PlayerInputActions playerControl;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
 
+    // Input Actions
+    private InputAction move;
+
+    // General Variables
+    private Vector2 moveInput;
+    [SerializeField] private float moveSpeed = 5.0f;
+
+    // Game Start Initializations
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        playerControl = new PlayerInputActions();
+    }
+
+    private void OnEnable()
+    {
+        move = playerControl.Player.Move;
+        move.Enable();
+    }
+
+    private void OnDisable()
+    {
+        move.Disable();
+    }
+
+    private void Update()
+    {
+        moveInput = move.ReadValue<Vector2>();
     }
 
     private void FixedUpdate()
@@ -26,6 +54,8 @@ public class PlayerScript : MonoBehaviour
         moveInput = inputValue.Get<Vector2>();
         animator.SetFloat("Horizontal", moveInput.x);
         animator.SetFloat("Vertical", moveInput.y);
-        animator.SetFloat("PlayerSpeed", moveInput.sqrMagnitude); 
+        animator.SetFloat("PlayerSpeed", moveInput.sqrMagnitude);
     }
+
+    private void
 }
