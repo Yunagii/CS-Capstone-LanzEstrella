@@ -3,12 +3,12 @@ XXX ---------- 13 November 2023 ---------- XXX
 Have basic test envoironment set up:
   X 8D character movement 
   X Tile map 
-  X v1 sprites and aniations
+  X v1 sprites and animations
 
 ---------- 16 DEC - 25 DEC ---------
 Additional movements and combat animations
-  - Collision
-  - Dash
+  x Collision
+  x Dash
   - Attack animations
 
 ---------- 26 DEC - 7 JAN ----------
