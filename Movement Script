@@ -6,56 +6,108 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class PlayerScript : MonoBehaviour
+public class playerContorllerScript : MonoBehaviour
 {
     //Unity Components
     private PlayerInputActions playerControl;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
+    [SerializeField] private TrailRenderer tr;
 
     // Input Actions
     private InputAction move;
+    private InputAction dash;
 
     // General Variables
-    private Vector2 moveInput;
+    private Vector2 moveInput = Vector2.zero;
     [SerializeField] private float moveSpeed = 5.0f;
+
+    // Dash Variables
+    private bool canDash = true;
+    private bool isDashing = false;
+    [SerializeField] private float dashSpeed = 25.0f;
+    [SerializeField] private float dashDuration = 0.5f;
+    [SerializeField] private float dashCooldown = 1f;
+
 
     // Game Start Initializations
     private void Awake()
     {
+        playerControl = new PlayerInputActions();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        playerControl = new PlayerInputActions();
+        tr = GetComponent<TrailRenderer>();
     }
 
     private void OnEnable()
     {
         move = playerControl.Player.Move;
+        dash = playerControl.Player.Dash;
+
         move.Enable();
+        dash.Enable();
     }
 
     private void OnDisable()
     {
         move.Disable();
+        dash.Disable();
     }
 
     private void Update()
     {
-        moveInput = move.ReadValue<Vector2>();
+        animator.SetFloat("Horizontal", moveInput.x);
+        animator.SetFloat("Vertical", moveInput.y);
+        animator.SetFloat("PlayerSpeed", moveInput.sqrMagnitude);
+
+        if (isDashing)
+        {
+            return;
+        }
     }
 
     private void FixedUpdate()
     {
+        if (isDashing)
+        {
+            return;
+        }
+
         rb.velocity = moveInput * moveSpeed;
+    }
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
+    }
+
+    public void Dash(InputAction.CallbackContext context)
+    {
+        if(context.performed && canDash)
+        {
+            StartCoroutine(DashCoroutine());
+        }
     }
 
     private void OnMove(InputValue inputValue)
     {
         moveInput = inputValue.Get<Vector2>();
-        animator.SetFloat("Horizontal", moveInput.x);
-        animator.SetFloat("Vertical", moveInput.y);
-        animator.SetFloat("PlayerSpeed", moveInput.sqrMagnitude);
     }
 
-    private void
+    private IEnumerator DashCoroutine()
+    {
+        canDash = false;
+        isDashing = true;
+        
+        rb.velocity = moveInput * dashSpeed;
+        tr.emitting = true;
+        yield return new WaitForSeconds(dashDuration);
+
+        rb.velocity = moveInput * moveSpeed;
+        tr.emitting = false;
+        isDashing = false;
+        
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
 }
