@@ -11,3 +11,7 @@
 ---------- 3 January 2023 ----------
 - Dash function created
 - Basic dash animations
+
+---------- 4 January 2023 ----------
+- Started Basic Combat and health function
+     - triggers only happen once, need movement input to trigger again.
