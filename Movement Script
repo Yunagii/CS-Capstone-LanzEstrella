@@ -30,7 +30,6 @@ public class playerContorllerScript : MonoBehaviour
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 1f;
 
-
     // Game Start Initializations
     private void Awake()
     {
@@ -61,9 +60,6 @@ public class playerContorllerScript : MonoBehaviour
         animator.SetFloat("Vertical", moveInput.y);
         animator.SetFloat("PlayerSpeed", moveInput.sqrMagnitude);
         
-        
-        
-
         if (isDashing)
         {
             return;
@@ -76,8 +72,7 @@ public class playerContorllerScript : MonoBehaviour
         {
             return;
         }
-        
-
+    
         rb.velocity = moveInput * moveSpeed;
     }
 
