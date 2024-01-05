@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,8 +16,8 @@ public class PlayerAttack : MonoBehaviour
     private float timer = 0f;
     private bool isAttacking = false;
     private bool canAttack = true;
-    [SerializeField] private float attackSpeed = 0.5f;
-    [SerializeField] private float attackTime = 0.25f;
+    [SerializeField] private float attackSpeed = 0.4f;
+    [SerializeField] private float attackTime = 0.1f;
 
     // Start is called before the first frame update
     private void Awake()
@@ -48,6 +47,7 @@ public class PlayerAttack : MonoBehaviour
 
     private IEnumerator AttackCoroutine()
     {
+            Debug.Log("Swing");
             isAttacking = true;
             canAttack = false;
             attackArea.SetActive(isAttacking);
