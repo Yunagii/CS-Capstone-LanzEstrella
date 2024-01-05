@@ -9,3 +9,6 @@ References:
 - Dash System
   https://www.youtube.com/watch?v=721TkkJ-CNM&ab_channel=GameCodeLibrary
   https://www.youtube.com/watch?v=2kFGmuPHiA0&ab_channel=bendux
+- Attacking and Health
+  https://www.youtube.com/watch?v=reG0wnLMoSs&list=PLKGarocXCE1H7pJk6k_CSwS359mtt3MVI&index=9&ab_channel=ModdingbyKaupenjoe
+  https://www.youtube.com/watch?v=ChE7u5EdR-U&ab_channel=ModdingbyKaupenjoe
