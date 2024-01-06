@@ -15,3 +15,6 @@
 ---------- 4 January 2023 ----------
 - Started Basic Combat and health function
      - triggers only happen once, need movement input to trigger again.
+
+---------- 5 January 2023 ----------
+- Fixed and the broke attack system while working on attack animations... may have to restart upon returning to campus???????
