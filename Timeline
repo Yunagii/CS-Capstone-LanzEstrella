@@ -1,3 +1,11 @@
+========== Legend ==========
+- Planned
+o In progress
+x Completed
+| Cancelled
+
+========== Backlog ==========
+
 ========== Timeline ==========
 XXX ---------- 13 November 2023 ---------- XXX
 Have basic test envoironment set up:
@@ -5,22 +13,22 @@ Have basic test envoironment set up:
   X Tile map 
   X v1 sprites and animations
 
----------- 16 DEC - 25 DEC ---------
+XXX ---------- 16 DEC - 25 DEC --------- XXX
 Additional movements and combat animations
   x Collision
   x Dash
-  - Attack animations
+  | Attack animations
 
 ---------- 26 DEC - 7 JAN ----------
 Baisc Combat and Enemy movement
-o Basic attack funcitonality and health
+x Basic attack funcitonality and health
 - Enemy spawn and AI
 - Enemy Sprites 
   - Idle 
   - Walk
   - Attack
 
----------- 8 JAN - 22 Jan ----------
+---------- 8 JAN - 21 Jan ----------
 UI, Skill Tree and Abilities
 - Player UI
 - Menu
@@ -28,3 +36,30 @@ UI, Skill Tree and Abilities
   - Skill tree
   - Inventory
 - 1 Fire ability
+
+---------- 22 JAN - 4 Feb ----------
+- Enemy Drops
+  - Elemental Orbs
+- Player Consumables
+  - Health Potions
+
+---------- 5 FEB - 18 FEB ----------
+- Fire form 
+  - [#] Different abilities
+  - Each ability is upgradeable
+
+---------- 19 FEB - 3 MAR ----------
+- Archer Enemy
+  - Behaviors
+  - Attack
+
+---------- 4 MAR - 17 MAR ----------
+- Water Form
+  - [#] Different abilities
+  - Each ability upgradable
+
+---------- 18 MAR - 31 MAR ----------
+- Tutorial
+
+---------- APR ----------
+- Tutorial
