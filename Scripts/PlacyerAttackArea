@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerAttackArea : MonoBehaviour
 {
-    [SerializeField] private int attackDMG= 5;
+    [SerializeField] private int attackDMG= 10;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.GetComponent<Health>() != null)
+        if(collider.GetComponent<HealthScript>() != null)
         {
-            Health health = collider.GetComponent<Health>();
+            HealthScript health = collider.GetComponent<HealthScript>();
             health.Damage(attackDMG);
             Debug.Log("HIT");
         }
