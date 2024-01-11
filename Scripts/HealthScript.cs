@@ -17,7 +17,7 @@ public class HealthScript : MonoBehaviour
         }
     }
 
-    private void Damage(int amount)
+    public void Damage(int amount)
     {
         if (amount < 0)
         {
@@ -25,6 +25,7 @@ public class HealthScript : MonoBehaviour
         }
 
         currentHealth -= amount;
+        StartCoroutine(VisualIndicatorCoroutine(Color.red));
 
         if (currentHealth <= 0)
         {
@@ -36,5 +37,16 @@ public class HealthScript : MonoBehaviour
     {
         Destroy(gameObject);
         Debug.Log("You Died");
+    }
+
+    private IEnumerator VisualIndicatorCoroutine(Color color)
+    {
+        GetComponent<SpriteRenderer>().color = color;
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<SpriteRenderer>().color = Color.white;
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<SpriteRenderer>().color = color;
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
