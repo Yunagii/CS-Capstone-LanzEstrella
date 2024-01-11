@@ -1,64 +1,40 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class HealthScript : MonoBehaviour
 {
-    [SerializeField] private float health = 100;
-    [SerializeField] private float maxHealth = 100;
+    [Header ("Health Variables")]
+    [SerializeField] private float currentHealth = 100.0f;
+    [SerializeField] private float maxHealth = 100.0f;
 
-    // Update is called once per frame
     private void Update()
     {
-        /*
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
             Damage(10);
         }
-
-        if (Input.GetKeyDown(KeyCode.Equals))
-        {
-            Heal(10);
-        }
-        */
     }
 
-    public void Damage(int amount)
+    private void Damage(int amount)
     {
         if (amount < 0)
         {
-            throw new System.ArgumentOutOfRangeException("Cannot hvae negative Damage");
+            throw new System.ArgumentOutOfRangeException("Negative DMG");
         }
 
-        this.health -= amount;
+        currentHealth -= amount;
 
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }
     }
 
-    public void Heal(int amount)
-    {
-        if (amount < 0)
-        {
-            throw new System.ArgumentOutOfRangeException("Cannot hvae negative Healing");
-        }
-
-        if (health + amount > maxHealth)
-        {
-            this.health = maxHealth;
-        } 
-        else
-        {
-            this.health += amount;
-        }
-    }
-
     private void Die()
     {
-        Debug.Log("You are dead");
         Destroy(gameObject);
+        Debug.Log("You Died");
     }
 }
