@@ -20,4 +20,7 @@
 - Fixed and the broke attack system while working on attack animations... may have to restart upon returning to campus???????
 
 ---------- 10 January 2023 ----------
-- Update and rewrote Movement, healt and attack scripts
+- Update and rewrote Movement, health and attack scripts
+
+---------- 11 January 2023 ----------
+- Added visual indicators when attacking and damaging enemies
