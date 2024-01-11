@@ -16,10 +16,13 @@ public class PlayerMovementScript : MonoBehaviour
     private InputAction dash;
     private InputAction attack;
 
+    [Header ("Other Scripts")]
+    private PlayerInputController playerInput; 
+    private PlayerAttackScript playerAttack;
+
     [Header ("Movement Variables")]
-    PlayerInputController playerInput; 
-    private Vector2 moveInput = Vector2.zero;
-    private float moveSpeed = 10.0f;
+    public Vector2 moveInput = Vector2.zero;
+    [SerializeField] private float moveSpeed = 10.0f;
 
     [Header ("Dash Variables")]
     private bool isDashing = false;
@@ -31,10 +34,6 @@ public class PlayerMovementScript : MonoBehaviour
 
     [Header ("Attack Variables")]
     private bool isAttacking = false;
-    PlayerAttackScript playerAttack;
-
-
-    private float attackDelay = 0.0f;
 
     private void Awake()
     {
@@ -42,6 +41,7 @@ public class PlayerMovementScript : MonoBehaviour
         animator = GetComponent<Animator>();
         tr = GetComponent<TrailRenderer>();
         playerInput = new PlayerInputController();
+        playerAttack = GetComponent<PlayerAttackScript>();
     }
 
     private void OnEnable()
@@ -68,33 +68,32 @@ public class PlayerMovementScript : MonoBehaviour
         animator.SetFloat("Vertical", moveInput.y);
         animator.SetFloat("Speed", moveInput.sqrMagnitude);
 
-        if (isDashing)
-        {
+        if(isDashing)
+       {
             return;
-        }
+       }
 
-        if(isAttacking)
-        {
+       if (isAttacking)
+       {
+            rb.velocity = Vector2.zero;
             return;
-        }
+       }
     }
 
     private void FixedUpdate()
     {
-        if (isDashing)
-        {
+       if(isDashing)
+       {
             return;
-        }
+       }
 
-        if (isAttacking)
-        {
+       if (isAttacking)
+       {
             rb.velocity = Vector2.zero;
             return;
-        }
-        else
-        {
-            rb.velocity = moveInput * moveSpeed;
-        }
+       }
+
+        rb.velocity = moveInput * moveSpeed;
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -117,6 +116,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     private IEnumerator DashCoroutine()
     {
+        Physics2D.IgnoreLayerCollision(6, 7, true);
         isDashing = true;
         canDash = false;
         tr.emitting = true;
@@ -129,17 +129,16 @@ public class PlayerMovementScript : MonoBehaviour
         rb.velocity = moveInput * moveSpeed;
         tr.emitting = false;
         isDashing = false;
+        Physics2D.IgnoreLayerCollision(6, 7, false);
         yield return new WaitForSeconds (dashCooldown);
         canDash = true;
     }  
 
     private IEnumerator AttackCoroutine()
     {
-        playerAttack = gameObject.GetComponent<PlayerAttackScript>();
-        attackDelay = playerAttack.attackSpeed + playerAttack.attackTime;
-
         isAttacking = true;
-        yield return new WaitForSeconds(attackDelay);
+        yield return new WaitForSeconds(playerAttack.attackTime);
         isAttacking = false;
+        yield return new WaitForSeconds(playerAttack.attackSpeed);
     }
 }
