@@ -1,0 +1,61 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+
+public class PlayerAttackScript : MonoBehaviour
+{
+    [Header ("Unity Components")]
+    private PlayerInputController playerInput;
+
+    [Header ("Input Actions")]
+    private InputAction attack;
+
+    [Header ("Attack Variables")]
+    private GameObject attackArea = default;
+    private bool isAttacking = true;
+    private bool canAttack = true;
+    public float attackTime = 0.1f;
+    public float attackSpeed = 0.4f;
+
+    private void Awake()
+    {
+        playerInput = new PlayerInputController();
+        attackArea = transform.GetChild(0).gameObject;
+    }
+
+    private void OnEnable()
+    {
+        attack = playerInput.Player.Attack;
+        attack.Enable();
+    } 
+
+    private void OnDisable()
+    {
+        attack.Disable();
+    }
+
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if (context.performed && canAttack)
+        {
+            StartCoroutine(AttackCoroutine());
+        }
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
+        isAttacking = true;
+        canAttack = false;
+
+        Debug.Log("Swing");
+        attackArea.SetActive(isAttacking);
+        yield return new WaitForSeconds(attackTime);
+
+        isAttacking = false;
+        attackArea.SetActive(isAttacking);
+        yield return new WaitForSeconds(attackSpeed);
+        canAttack = true;
+    }
+}
