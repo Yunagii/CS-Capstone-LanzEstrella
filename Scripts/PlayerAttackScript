@@ -60,15 +60,15 @@ public class PlayerAttackScript : MonoBehaviour
 
     private void SetAttackDireciton()
     {
-        movingWest = playerMovement.moveInput.x < 0;
-        movingEast = playerMovement.moveInput.x > 0;
-        movingNorth = playerMovement.moveInput.y > 0;
-        movingSouth = playerMovement.moveInput.y < 0;
+        movingWest = playerMovement.lastInput.x < 0;
+        movingEast = playerMovement.lastInput.x > 0;
+        movingNorth = playerMovement.lastInput.y > 0;
+        movingSouth = playerMovement.lastInput.y < 0;
 
-        movingNW = playerMovement.moveInput.x < 0 && playerMovement.moveInput.y > 0;
-        movingNE = playerMovement.moveInput.x > 0 && playerMovement.moveInput.y > 0;
-        movingSW = playerMovement.moveInput.x < 0 && playerMovement.moveInput.y < 0;
-        movingSE = playerMovement.moveInput.x > 0 && playerMovement.moveInput.y < 0;
+        movingNW = playerMovement.lastInput.x < 0 && playerMovement.lastInput.y > 0;
+        movingNE = playerMovement.lastInput.x > 0 && playerMovement.lastInput.y > 0;
+        movingSW = playerMovement.lastInput.x < 0 && playerMovement.lastInput.y < 0;
+        movingSE = playerMovement.lastInput.x > 0 && playerMovement.lastInput.y < 0;
 
         if (movingWest)
         {
