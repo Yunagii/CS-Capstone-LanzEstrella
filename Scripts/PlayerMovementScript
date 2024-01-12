@@ -22,6 +22,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     [Header ("Movement Variables")]
     public Vector2 moveInput = Vector2.zero;
+    public Vector2 lastInput = Vector2.zero;
     [SerializeField] private float moveSpeed = 10.0f;
 
     [Header ("Dash Variables")]
@@ -64,34 +65,38 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void Update()
     {
-        animator.SetFloat("Horizontal", moveInput.x);
-        animator.SetFloat("Vertical", moveInput.y);
-        animator.SetFloat("Speed", moveInput.sqrMagnitude);
+        if (moveInput.sqrMagnitude > 0.01f)
+        {
+            animator.SetFloat("Horizontal", moveInput.x);
+            animator.SetFloat("Vertical", moveInput.y);
+            animator.SetFloat("Speed", moveInput.sqrMagnitude);         // Move out of if statement when other idle animations are added
+            lastInput = moveInput;
+        }
 
         if(isDashing)
-       {
+        {
             return;
-       }
+        }
 
-       if (isAttacking)
-       {
+        if (isAttacking)
+        {
             rb.velocity = Vector2.zero;
             return;
-       }
+        }
     }
 
     private void FixedUpdate()
     {
-       if(isDashing)
-       {
+        if(isDashing)
+        {
             return;
-       }
+        }
 
-       if (isAttacking)
-       {
+        if (isAttacking)
+        {
             rb.velocity = Vector2.zero;
             return;
-       }
+        }
 
         rb.velocity = moveInput * moveSpeed;
     }
