@@ -5,6 +5,9 @@ x Completed
 | Cancelled
 
 ========== Backlog ==========
+- Enemy Spawn
+- Fire ability
+- Player UI
 
 ========== Timeline ==========
 XXX ---------- 13 November 2023 ---------- XXX
@@ -23,10 +26,10 @@ Additional movements and combat animations
 Baisc Combat and Enemy movement
 x Basic attack funcitonality and health
 - Enemy spawn and AI
-- Enemy Sprites 
-  - Idle 
-  - Walk
-  - Attack
+| Enemy Sprites 
+  | Idle 
+  | Walk
+  | Attack
 
 ---------- 8 JAN - 21 Jan ----------
 UI, Skill Tree and Abilities
