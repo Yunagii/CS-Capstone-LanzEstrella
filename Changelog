@@ -8,22 +8,25 @@
 - Adjusted code : animation states work
 - Collision added
 
----------- 3 January 2023 ----------
+---------- 3 January 2024 ----------
 - Dash function created
 - Basic dash animations
 
----------- 4 January 2023 ----------
+---------- 4 January 2024 ----------
 - Started Basic Combat and health function
      - triggers only happen once, need movement input to trigger again.
 
----------- 5 January 2023 ----------
+---------- 5 January 2024 ----------
 - Fixed and the broke attack system while working on attack animations... may have to restart upon returning to campus???????
 
----------- 10 January 2023 ----------
+---------- 10 January 2024 ----------
 - Update and rewrote Movement, health and attack scripts
 
----------- 11 January 2023 ----------
+---------- 11 January 2024 ----------
 - Added visual indicators when attacking and damaging enemies
 
----------- 30 January 2023 ----------
+---------- 30 January 2024 ----------
 - Started on Loot System
+
+---------- 13 March 2024 ----------
+- Added Main Menu
