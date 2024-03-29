@@ -30,3 +30,12 @@
 
 ---------- 13 March 2024 ----------
 - Added Main Menu
+
+---------- 19 March 2024 ----------
+- Camera follows player
+
+---------- 20 March 2024 ----------
+- Added Enemy Tracking AI
+
+---------- 29 March 2024 ----------
+- Added Health Bars
