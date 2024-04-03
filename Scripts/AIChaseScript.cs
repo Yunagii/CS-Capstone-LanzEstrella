@@ -8,32 +8,16 @@ using UnityEngine;
 public class AIChaseScript : MonoBehaviour
 {
     [Header ("Variables")]
-    public GameObject Player;
-    public float speed;
-    public float distance;
+    [SerializeField] private float speed = 1.5f;
+    private GameObject Target;
 
-    void Start()
+    void Awake()
     {
-        
+        Target = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        distance = Vector2.Distance(transform.position, Player.transform.position);
-        Vector2 direction = Player.transform.position - transform.position;
-        direction.Normalize();
-
-        transform.position = Vector2.MoveTowards(this.transform.position, Player.transform.position, speed * Time.deltaTime);
-
-        if (direction.x > 0)
-        {
-            this.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-        }
-
-        else
-        {
-            this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
-        }
+        transform.position = Vector2.MoveTowards(transform.position, Target.transform.position, speed * Time.deltaTime);
     }
 }
