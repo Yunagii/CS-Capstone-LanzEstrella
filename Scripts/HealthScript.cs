@@ -12,7 +12,7 @@ public class HealthScript : MonoBehaviour
     [Header ("Other Scripts")]
     public HealthBarScript HealthBar;
 
-    void Start()
+    void Awake()
     {
         currentHealth = maxHealth;
         HealthBar.SetMaxHealth(maxHealth);
