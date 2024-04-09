@@ -13,3 +13,7 @@ References:
 - Attacking and Health
   https://www.youtube.com/watch?v=reG0wnLMoSs&list=PLKGarocXCE1H7pJk6k_CSwS359mtt3MVI&index=9&ab_channel=ModdingbyKaupenjoe
   https://www.youtube.com/watch?v=ChE7u5EdR-U&ab_channel=ModdingbyKaupenjoe
+- Wave Spawner
+  https://www.youtube.com/watch?v=pKN8jVnSKyM
+- Knockback effect
+  https://www.youtube.com/watch?v=0u2R9MDi-_w
