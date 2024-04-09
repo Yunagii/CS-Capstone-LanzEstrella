@@ -4,6 +4,7 @@ I am developing an RPG where you play as the slime. Right now I'm in the VERY ea
 
 
 References:
+(I haven't really been updating my references lately, sorry :/)
 - Input Management System
   https://www.youtube.com/watch?v=HmXU4dZbaMw&ab_channel=BMo
 - Dash System
