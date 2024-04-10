@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 [System.Serializable]
 
 public class Wave
@@ -48,11 +49,10 @@ public class WaveSpawnerScript : MonoBehaviour
             else
             {
             // add restart function
+            SceneManager.LoadScene("Victory");
             Debug.Log("Game Finish");
             }
-        }
-
-        
+        }   
     }
 
     private void SpawnNextWave()
