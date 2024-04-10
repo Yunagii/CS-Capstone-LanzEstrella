@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class HealthScript : MonoBehaviour
 {
     [Header ("Health Variables")]
     [SerializeField] private float currentHealth;
     [SerializeField] private float maxHealth = 100.0f;
+    private bool isPlayer = false;
 
     [Header ("Other Scripts")]
     public HealthBarScript HealthBar;
@@ -47,7 +50,11 @@ public class HealthScript : MonoBehaviour
     {
         //GetComponent<LootBagScript>().InstantiateLoot(transform.position);
         Destroy(gameObject);
-        Debug.Log("You Died");
+
+        if (gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        }   
     }
 
     private IEnumerator VisualIndicatorCoroutine(Color color)
