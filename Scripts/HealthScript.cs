@@ -10,7 +10,6 @@ public class HealthScript : MonoBehaviour
     [Header ("Health Variables")]
     [SerializeField] private float currentHealth;
     [SerializeField] private float maxHealth = 100.0f;
-    private bool isPlayer = false;
 
     [Header ("Other Scripts")]
     public HealthBarScript HealthBar;
@@ -26,6 +25,13 @@ public class HealthScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
             Damage(10);
+        }
+        else if (Input.GetKeyDown(KeyCode.K))
+        {
+            if (gameObject.tag == "Hostile")
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -53,7 +59,7 @@ public class HealthScript : MonoBehaviour
 
         if (gameObject.tag == "Player")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+            SceneManager.LoadScene("Death");
         }   
     }
 
